@@ -62,11 +62,11 @@ class Particle{
     
     // Scale the radius of the particle depending on the
     // distance between the cursor and particle.
-    this.scale = mapRange(dd, 0, 200, 1, 5);
+    this.scale = mapRange(dd, 0, 200, 1, 3);
     
     // Change the color of the scaled particle depending 
     // on the it's scale.
-    if (this.scale > 3) this.color = this.updateColor;
+    if (this.scale > 2) this.color = this.updateColor;
     else this.color = this.colA;
 
 
@@ -210,7 +210,7 @@ const skatch = (width, height) => {
   const gapCircle = 1;
   const gapDot = 1;
   let color;
-  let dotRadius = 12;
+  let dotRadius = 6;
   let cirRadius = 0;
   const fitRadius = dotRadius;
 

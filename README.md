@@ -5,6 +5,6 @@ This is the particles animation on the mousemove event, written into the JavaScr
 For better demonstration please visit to the following link:
 
 - Note: the animation interacts only with the mouse.
--  [Demo.](https://aleksandre19.github.io/abstract_animation/)
+-  [Demo.](https://aleksandre19.github.io/particles/)
 
 <h2 align="center"><img src="images/mockup.gif" alt='Diasfero Mockup GIF'></h2>
