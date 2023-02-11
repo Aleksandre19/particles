@@ -1,0 +1,18 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+canvas{
+    /* background-image: url('images/background.jpg'); */
+    border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -540px;
+    margin-top: -540px;
+    background-color: black;
+}
