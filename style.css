@@ -12,7 +12,15 @@ canvas{
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -325px;
-    margin-top: -325px;
+    margin-left: -195px;
+    margin-top: -195px;
     background-color: black;
+}
+
+/* Tablet device  */
+@media (min-width: 768px) {
+    canvas {
+        margin-top: -350px;
+        margin-left: -350px;
+    }
 }

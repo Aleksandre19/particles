@@ -1,5 +1,10 @@
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
+const canvasBoundings = canvas.getBoundingClientRect();
+
+// Set the width and height
+canvas.width = 700;
+canvas.height = 700;
 
 const width = canvas.width;
 const height = canvas.height;
@@ -118,11 +123,28 @@ class Particle{
 const cursor = { x: 9999, y: 9999 };
 let mouseUp = false;
 
+
+// Get X and Y coordinates based on the device type.
+const getPos = (event) => {
+
+  const evt = {
+    x: event.type.includes('mouse') ? event.offsetX : event.touches[0].clientX - canvasBoundings.left,
+    y: event.type.includes('mouse') ? event.offsetY : event.touches[0].clientY - canvasBoundings.top
+  }
+
+  return evt;
+}
+
 const onMouseDown = (e) => {
   mouseUp = false;
 
+  // Desktop events
   canvas.addEventListener('mousemove', onMouseMove);
   canvas.addEventListener('mouseup', onMouseUp);
+
+  // Mobile and Tablet events
+  canvas.addEventListener('touchmove', onMouseMove);
+  canvas.addEventListener('touchend', onMouseUp);
 
   animate();
   onMouseMove(e);
@@ -130,15 +152,22 @@ const onMouseDown = (e) => {
 
 const onMouseMove = (e) => {
   // The mouse current position.
-  cursor.x = e.offsetX;
-  cursor.y = e.offsetY;
+  const pos = getPos(e);
+  cursor.x = pos.x;
+  cursor.y = pos.y;
 }
 
 
 const onMouseUp = () => {
   mouseUp = true;
+
+  // Desktop events
   canvas.removeEventListener('mousemove', onMouseMove);
   canvas.removeEventListener('mouseup', onMouseUp);
+
+  // Mobile and Tablet events
+  canvas.removeEventListener('touchmove', onMouseMove);
+  canvas.removeEventListener('touchend', onMouseUp);
 
   cursor.x = 9999;
   cursor.y = 9999;
@@ -188,7 +217,13 @@ const animate = () => {
 
 let imgA;
 const skatch = (width, height) => {
+
+  // Desktop event
   canvas.addEventListener('mousedown', onMouseDown);
+
+  // Mobile and Tablet event
+  canvas.addEventListener('touchstart', onMouseDown);
+       
   
   // Creat the canvas element for the reference images.
   const imgACanvas = document.createElement('canvas');
@@ -210,7 +245,7 @@ const skatch = (width, height) => {
   const gapCircle = 1;
   const gapDot = 1;
   let color;
-  let dotRadius = 6;
+  let dotRadius = Math.floor(width * 0.01);
   let cirRadius = 0;
   const fitRadius = dotRadius;
 
